@@ -1,17 +1,14 @@
-# Use an official lightweight Python image
-FROM python:3.9-slim
+# Use PyTorch base image
+FROM pytorch/pytorch:2.1.0-cpu
 
-# Set the working directory inside the container
 WORKDIR /app
 
-# Copy all files from your local project into the container
 COPY . .
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir flask==2.3.3 transformers==4.36.0 sentencepiece==0.1.99 protobuf==3.20.0
 
-# Expose Flask default port (5000)
 EXPOSE 5000
 
-# Command to start your app
 CMD ["python", "app.py"]
+
+
